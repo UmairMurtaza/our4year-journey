@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tribute to My Batchmates</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #dbeafe, #f0fdf4);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+      color: #1e293b;
+    }
+
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.5rem;
+      color: #4f46e5;
+      margin-bottom: 10px;
+    }
+
+    .input-section {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 1rem;
+      width: 280px;
+      border-radius: 10px;
+      border: 2px solid #6366f1;
+      outline: none;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .card {
+      max-width: 650px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-top: 40px;
+      display: none;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    #personName {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+
+    #message {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .heart {
+      color: #ef4444;
+      font-size: 1.5rem;
+    }
+
+
+
+  </style>
+</head>
+<body>
+  <h1>🎓 4 Years, 1 Family 🎓</h1>
+  <p>Enter your CNIC to see your special tribute</p>
+
+  <div class="input-section">
+    <input type="text" id="cnicInput" placeholder="e.g., 35202-1234567-8" />
+    <br />
+    <button onclick="showTribute()">View My Tribute</button>
+    <div id="error" class="error"></div>
+  </div>
+
+  <div class="card" id="tributeCard">
+    <div id="personName"></div>
+    <div id="message"></div>
+    <div class="heart">❤️ Always in memory ❤️</div>
+  </div>
+
+
+  <div class="footer">Created with 💙 by Muhammad Umair Murtaza</div>
+
+  <script>
+    const data = {
+      "35202-1234567-8": {
+        name: "Fatima Nasir",
+        message: "From our first project together to the final presentation, your dedication and heart made a difference. You’re not just a classmate — you're a lifelong friend. 🌟"
+      },
+      "35202-9876543-1": {
+        name: "Adeel Hussain",
+        message: "Always calm, always smart — you were our debugging master and emotional balance. I’ll never forget our late-night sprinting before deadlines! 🚀"
+      }
+      // ➕ Add more CNICs here
+    };
+
+    function showTribute() {
+      const cnic = document.getElementById("cnicInput").value.trim();
+      const errorDiv = document.getElementById("error");
+      const card = document.getElementById("tributeCard");
+      const nameEl = document.getElementById("personName");
+      const msgEl = document.getElementById("message");
+
+      if (data[cnic]) {
+        errorDiv.innerText = "";
+        nameEl.innerText = `Dear ${data[cnic].name}!`;
+        msgEl.innerText = data[cnic].message;
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+        errorDiv.innerText = "CNIC not found. Please contact Umair if there's an error.";
+      }
+    }
+  </script>
+</body>
+</html>
