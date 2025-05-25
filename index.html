@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tribute to My Batchmates</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/earlyaccess/notonastaliqurdu.css" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -96,6 +97,15 @@
       line-height: 1.6;
     }
 
+    #urduPoetry {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 1.4rem;
+      color: #0f172a;
+      margin-top: 20px;
+      direction: rtl;
+      text-align: right;
+    }
+
     .footer {
       margin-top: 40px;
       font-size: 0.9rem;
@@ -105,10 +115,8 @@
     .heart {
       color: #ef4444;
       font-size: 1.5rem;
+      margin-top: 20px;
     }
-
-
-
   </style>
 </head>
 <body>
@@ -125,9 +133,9 @@
   <div class="card" id="tributeCard">
     <div id="personName"></div>
     <div id="message"></div>
+    <div id="urduPoetry"></div>
     <div class="heart">❤️ Always in memory ❤️</div>
   </div>
-
 
   <div class="footer">Created with 💙 by Muhammad Umair Murtaza</div>
 
@@ -135,11 +143,13 @@
     const data = {
       "35202-1234567-8": {
         name: "Fatima Nasir",
-        message: "From our first project together to the final presentation, your dedication and heart made a difference. You’re not just a classmate — you're a lifelong friend. 🌟"
+        message: "From our first project together to the final presentation, your dedication and heart made a difference. You’re not just a classmate — you're a lifelong friend. 🌟",
+        poetry: "تمہاری یاد کے جگنو ہمارے ساتھ رہتے ہیں\nاندھیری رات میں ہم کو سحر کی بات کہتے ہیں"
       },
       "35202-9876543-1": {
         name: "Adeel Hussain",
-        message: "Always calm, always smart — you were our debugging master and emotional balance. I’ll never forget our late-night sprinting before deadlines! 🚀"
+        message: "Always calm, always smart — you were our debugging master and emotional balance. I’ll never forget our late-night sprinting before deadlines! 🚀",
+        poetry: "دوستی نام ہے سچائی کا، خلوص کا، اعتماد کا\nایک ایسا رشتہ جو ہر امتحان میں کامیاب ہوتا ہے"
       }
       // ➕ Add more CNICs here
     };
@@ -150,11 +160,14 @@
       const card = document.getElementById("tributeCard");
       const nameEl = document.getElementById("personName");
       const msgEl = document.getElementById("message");
+      const poetryEl = document.getElementById("urduPoetry");
 
       if (data[cnic]) {
         errorDiv.innerText = "";
-        nameEl.innerText = `Dear ${data[cnic].name}!`;
-        msgEl.innerText = data[cnic].message;
+        const entry = data[cnic];
+        nameEl.innerText = `Dear ${entry.name}!`;
+        msgEl.innerText = entry.message;
+        poetryEl.innerText = entry.poetry || "";
         card.style.display = "block";
       } else {
         card.style.display = "none";
